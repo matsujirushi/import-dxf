@@ -649,16 +649,16 @@ string dxf(string dxffile, int units, real xorigin, real yorigin,
       }
       break;
     case state_LWPOLYLINE:/* absorbing LWPOLYLINE 07/09/2012                          */
-      if (strcomp2(s[m], " 70", "70") != -1) {                        /* Checks for closed polylines and imports them.            */
+      if (strcomp2(s[m], " 70", " 70") != -1) {                        /* Checks for closed polylines and imports them.            */
         plclosed = strtod(s[m+1]);
       }
-      if (strcomp2(s[m], " 42", "42") != -1) {
+      if (strcomp2(s[m], " 42", " 42") != -1) {
         bulgevalue[i] = strtod(s[m+1]);                             /* Store bulge value for node                               */
       }
-      if (strcomp2(s[m], " 10", "10") != -1) {
+      if (strcomp2(s[m], " 10", " 10") != -1) {
         xa[i] = S_factor*strtod(s[m+1]);
       }
-      if (strcomp2(s[m], " 20", "20") != -1) {
+      if (strcomp2(s[m], " 20", " 20") != -1) {
         LWPOLY_FLAG = 0;                                            /* On poorly formated files, this state may run into an ... */
         /* ... improperly formatted zero and exit without ...       */
         /* ... processing any points. This flag guarantees that ... */
@@ -669,7 +669,7 @@ string dxf(string dxffile, int units, real xorigin, real yorigin,
         i++;          /* This avoids a misalignment of the bulge array should...  */
         /* ...one or more polylines not have bulges.                */
       }
-      if (strcomp2(s[m], "  0", "0") != -1 & LWPOLY_FLAG == 0) {
+      if (strcomp2(s[m], "  0", " 0") != -1 & LWPOLY_FLAG == 0) {
         int _polygon_mode = (polygon_mode && i>2 ? 1 : 0);
         if (_polygon_mode)
           out += "Polygon";
