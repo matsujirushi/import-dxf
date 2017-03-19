@@ -725,6 +725,11 @@ string dxf(string dxffile, int units, real xorigin, real yorigin,
           }
         }
         if (_polygon_mode) {
+          sprintf(temp,
+                  " (%0.2f %0.2f)",
+                  mx(xa[0]+xorg),
+                  my(ya[0]+yorg));
+          out += temp;
           out += ";\n";
         }
         state = state_SEARCH;
